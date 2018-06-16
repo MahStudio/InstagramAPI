@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
-    <id>Olive</id>
+    <id>InstagramUWPAPI</id>
     <version>1.0.0</version>
-    <title>Instagram API</title>
+    <title>Instagram API UWP</title>
     <authors>Mah Studio</authors>
     <projectUrl>https://github.com/MahStudio/InstagramAPI</projectUrl>
     <copyright>Copyleft ©2018 Mah Studio.</copyright>
@@ -11,16 +11,16 @@
 	<tags>instagram api</tags>
   </metadata>
   <files>
-        <file src=".\ARM\Debug\InstaAPI.dll" target="runtimes\win10-arm"/>
-        <file src="..\ARM\Debug\InstaAPI.pri" target="runtimes\win10-arm"/>
-		<file src="..\ARM\Debug\InstaAPI.xml" target="runtimes\win10-arm"/>
+        <file src=".\bin\ARM\Debug\InstaAPI.dll" target="runtimes\win10-arm"/>
+        <file src=".\bin\ARM\Debug\InstaAPI.pri" target="runtimes\win10-arm"/>
+		<file src=".\bin\ARM\Debug\InstaAPI.xml" target="runtimes\win10-arm"/>
     
-        <file src=".\x64\Debug\InstaAPI.dll" target="runtimes\win10-x64"/>
-        <file src=".\x64\Debug\InstaAPI.pri" target="runtimes\win10-x64"/>
-		<file src=".\x64\Debug\InstaAPI.xml" target="runtimes\win10-x64"/>
+        <file src=".\bin\x64\Debug\InstaAPI.dll" target="runtimes\win10-x64"/>
+        <file src=".\bin\x64\Debug\InstaAPI.pri" target="runtimes\win10-x64"/>
+		<file src=".\bin\x64\Debug\InstaAPI.xml" target="runtimes\win10-x64"/>
     
-        <file src=".\x86\Debug\InstaAPI.dll" target="runtimes\win10-x86"/>
-        <file src=".\x86\Debug\InstaAPI.pri" target="runtimes\win10-x86"/>
-		<file src=".\x86\Debug\InstaAPI.xml" target="runtimes\win10-x86"/>
+        <file src=".\bin\x86\Debug\InstaAPI.dll" target="runtimes\win10-x86"/>
+        <file src=".\bin\x86\Debug\InstaAPI.pri" target="runtimes\win10-x86"/>
+		<file src=".\bin\x86\Debug\InstaAPI.xml" target="runtimes\win10-x86"/>
   </files>
 </package>
