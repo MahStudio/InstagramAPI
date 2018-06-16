@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using InstaSharper.Classes;
 using InstaSharper.Classes.Android.DeviceInfo;
@@ -15,6 +16,7 @@ using InstaSharper.Helpers;
 using InstaSharper.Logger;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Windows.Storage;
 
 namespace InstaSharper.API.Processors
 {
@@ -337,7 +339,7 @@ namespace InstaSharper.API.Processors
                     }
                 };
                 var ImageUri = new Uri("ms-appdata://" + image.URI, UriKind.RelativeOrAbsolute);
-                var arr = File.ReadAllBytes(ImageUri.OriginalString);
+                var arr = (await FileIO.ReadBufferAsync(await StorageFile.GetFileFromApplicationUriAsync(ImageUri))).ToArray();
                 var imageContent = new ByteArrayContent(arr);
                 imageContent.Headers.Add("Content-Transfer-Encoding", "binary");
                 imageContent.Headers.Add("Content-Type", "application/octet-stream");

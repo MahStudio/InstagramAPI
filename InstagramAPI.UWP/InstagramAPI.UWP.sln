@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaAPI", "InstaAPI\InstaAPI.csproj", "{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|ARM.ActiveCfg = Debug|ARM
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|ARM.Build.0 = Debug|ARM
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|x64.ActiveCfg = Debug|x64
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|x64.Build.0 = Debug|x64
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|x86.ActiveCfg = Debug|x86
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Debug|x86.Build.0 = Debug|x86
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|ARM.ActiveCfg = Release|ARM
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|ARM.Build.0 = Release|ARM
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|x64.ActiveCfg = Release|x64
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|x64.Build.0 = Release|x64
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|x86.ActiveCfg = Release|x86
+		{EC7065C7-6FBF-48C0-879D-EE7A767A0E2C}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {154348B2-79EA-4CA8-96FD-53F6D56D72D5}
+	EndGlobalSection
+EndGlobal

@@ -17,6 +17,7 @@ using InstaSharper.Converters;
 using InstaSharper.Helpers;
 using InstaSharper.Logger;
 using Newtonsoft.Json;
+using Windows.System;
 
 namespace InstaSharper.API
 {
