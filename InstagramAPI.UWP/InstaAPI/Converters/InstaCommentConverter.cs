@@ -31,7 +31,8 @@ namespace InstaSharper.Converters
                 HasMoreHeadChildComments = SourceObject.HasMoreHeadChildComments,
                 HasMoreTailChildComments = SourceObject.HasMoreTailChildComments,
                 NextMaxChildCursor = SourceObject.NextMaxChildCursor,
-                NumTailChildComments = SourceObject.NumTailChildComments
+                NumTailChildComments = SourceObject.NumTailChildComments,
+                PreviewChildComments = SourceObject.PreviewChildComments
             };
             return comment;
         }

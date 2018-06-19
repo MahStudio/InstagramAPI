@@ -1,4 +1,6 @@
-﻿using System;
+﻿using InstaSharper.Classes.ResponseWrappers;
+using System;
+using System.Collections.Generic;
 
 namespace InstaSharper.Classes.Models
 {
@@ -37,7 +39,7 @@ namespace InstaSharper.Classes.Models
 
         public string NextMaxChildCursor { get; set; }
 
-        //public InstaCommentList PreviewChildComments { get; set; }
+        public List<InstaChildComments> PreviewChildComments { get; set; }
 
         public bool Equals(InstaComment comment)
         {

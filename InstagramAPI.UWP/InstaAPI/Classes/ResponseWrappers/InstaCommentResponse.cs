@@ -1,5 +1,6 @@
 ﻿using InstaSharper.Classes.Models;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace InstaSharper.Classes.ResponseWrappers
 {
@@ -41,7 +42,7 @@ namespace InstaSharper.Classes.ResponseWrappers
 
         [JsonProperty("next_max_child_cursor")] public string NextMaxChildCursor { get; set; }
 
-        //[JsonProperty("preview_child_comments")] public InstaCommentList PreviewChildComments { get; set; }
+        [JsonProperty("preview_child_comments")] public List<InstaChildComments> PreviewChildComments { get; set; }
 
         //"next_max_child_cursor": "AQC5sb1eLI83uSipN6uwfM6fFBaoKY4CxmmxJfHe7PzGCc_k3ynU6cY0tQT2ps6vO4XprYotxT8eXRvNham3z5gWrlGW08xiG-szC538GSjHsw",
         //"num_tail_child_comments": 10,
@@ -59,4 +60,21 @@ namespace InstaSharper.Classes.ResponseWrappers
 
         //"preview_child_comments": [],
     }
+    
+    public class InstaChildComments
+    {
+        [JsonProperty("comment_like_count")] public int CommentLikeCount { get; set; }
+        [JsonProperty("content_type")] public string ContentType { get; set; }
+        [JsonProperty("created_at")] public float CreatedAt { get; set; }
+        [JsonProperty("created_at_utc")] public int CreatedAtUtc { get; set; }
+        [JsonProperty("has_liked_comment")] public bool HasLikedComment { get; set; }
+        [JsonProperty("media_id")] public long MediaId { get; set; }
+        [JsonProperty("parent_comment_id")] public long ParentCommentId { get; set; }
+        [JsonProperty("pk")] public long PK { get; set; }
+        [JsonProperty("status")] public string Status { get; set; }
+        [JsonProperty("text")] public string Text { get; set; }
+        [JsonProperty("type")] public int Type { get; set; }
+        [JsonProperty("user")] public InstaUserShort User { get; set; }
+    }
+    
 }
