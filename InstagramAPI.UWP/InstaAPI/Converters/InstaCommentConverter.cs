@@ -15,7 +15,7 @@ namespace InstaSharper.Converters
             var comment = new InstaComment
             {
                 BitFlags = SourceObject.BitFlags,
-                ContentType = (InstaContentType) Enum.Parse(typeof(InstaContentType), SourceObject.ContentType, true),
+                ContentType = (InstaContentType)Enum.Parse(typeof(InstaContentType), SourceObject.ContentType, true),
                 CreatedAt = DateTimeHelper.UnixTimestampToDateTime(SourceObject.CreatedAt),
                 CreatedAtUtc = DateTimeHelper.UnixTimestampToDateTime(SourceObject.CreatedAtUtc),
                 LikesCount = SourceObject.LikesCount,
@@ -32,8 +32,30 @@ namespace InstaSharper.Converters
                 HasMoreTailChildComments = SourceObject.HasMoreTailChildComments,
                 NextMaxChildCursor = SourceObject.NextMaxChildCursor,
                 NumTailChildComments = SourceObject.NumTailChildComments,
-                PreviewChildComments = SourceObject.PreviewChildComments
             };
+            if(SourceObject.PreviewChildComments != null)
+            {
+                foreach (var item in SourceObject.PreviewChildComments)
+                {
+                    if (comment.PreviewChildComments == null) comment.PreviewChildComments = new System.Collections.Generic.List<InstaChildComments>();
+
+                    comment.PreviewChildComments.Add(new InstaChildComments()
+                    {
+                        CommentLikeCount = item.CommentLikeCount,
+                        ContentType = item.ContentType,
+                        CreatedAt = DateTimeHelper.UnixTimestampToDateTime(item.CreatedAt),
+                        CreatedAtUtc = DateTimeHelper.UnixTimestampToDateTime(item.CreatedAtUtc),
+                        HasLikedComment = item.HasLikedComment,
+                        MediaId = item.MediaId,
+                        ParentCommentId = item.ParentCommentId,
+                        PK = item.PK,
+                        Status = item.Status,
+                        Text = item.Text,
+                        Type = item.Type,
+                        User = item.User
+                    });
+                }
+            }
             return comment;
         }
     }
