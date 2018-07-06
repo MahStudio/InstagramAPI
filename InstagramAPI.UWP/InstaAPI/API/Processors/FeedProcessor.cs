@@ -183,6 +183,7 @@ namespace InstaSharper.API.Processors
 
             var mediaList = ConvertersFabric.Instance.GetMediaListConverter(mediaResponse).Convert();
             mediaList.NextId = paginationParameters.NextId = mediaResponse.NextMaxId;
+            paginationParameters.PagesLoaded++;
             while (mediaResponse.MoreAvailable
                    && !string.IsNullOrEmpty(paginationParameters.NextId)
                    && paginationParameters.PagesLoaded < paginationParameters.MaximumPagesToLoad)
