@@ -1,4 +1,5 @@
-﻿using InstaSharper.Classes;
+﻿using InstaAPI.Classes;
+using InstaSharper.Classes;
 using InstaSharper.Classes.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace InstaSharper.API.Processors
 {
     public interface IAccountProcessor
     {
-
+        Task<IResult<TwoFactorRegenBackupCodesResponse>> RegenerateTwoFactorBackupCodes();
         Task<IResult<AccountUserResponse>> GetRequestForEditProfileAsync();
         /// <summary>
         /// NOT COMPLETE

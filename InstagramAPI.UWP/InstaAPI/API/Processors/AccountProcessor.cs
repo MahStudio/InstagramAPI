@@ -16,6 +16,7 @@ using InstaSharper.Converters;
 using InstaSharper.Classes.ResponseWrappers;
 using InstaSharper.Classes.Models;
 using System.Net;
+using InstaAPI.Classes;
 
 namespace InstaSharper.API.Processors
 {
@@ -48,7 +49,7 @@ namespace InstaSharper.API.Processors
 
                 var instaUri = new Uri(InstaApiConstants.BASE_INSTAGRAM_API_URL + $"accounts/set_biography/");
                 Debug.WriteLine(instaUri.ToString());
-                
+
                 var data = new JObject
                 {
                     { "_csrftoken", _user.CsrfToken},
@@ -89,7 +90,7 @@ namespace InstaSharper.API.Processors
             try
             {
                 var editRequest = await GetRequestForEditProfileAsync();
-                if(!editRequest.Succeeded)
+                if (!editRequest.Succeeded)
                     return Result.Fail("Edit request returns badrequest", (AccountUserResponse)null);
                 var user = editRequest.Value.User.Username;
 
@@ -128,7 +129,7 @@ namespace InstaSharper.API.Processors
                 return Result.Fail<AccountUserResponse>(exception);
             }
         }
-        
+
         public async Task<IResult<AccountUserResponse>> GetRequestForEditProfileAsync()
         {
             try
@@ -145,9 +146,9 @@ namespace InstaSharper.API.Processors
                 Debug.WriteLine(json);
 
                 var o = JsonConvert.DeserializeObject<AccountUserResponse>(json);
-                
+
                 return Result.Success(o);
-            
+
             }
             catch (Exception exception)
             {
@@ -174,7 +175,7 @@ namespace InstaSharper.API.Processors
                 var request = HttpHelper.GetSignedRequest(HttpMethod.Post, instaUri, _deviceInfo, data);
                 request.Headers.Add("Host", "i.instagram.com");
                 var response = await _httpRequestProcessor.SendAsync(request);
-                var json = await response.Content.ReadAsStringAsync();               
+                var json = await response.Content.ReadAsStringAsync();
 
                 if (response.StatusCode != HttpStatusCode.OK)
                     return Result.Fail("Status code: " + response.StatusCode, false);
@@ -191,6 +192,42 @@ namespace InstaSharper.API.Processors
                 Debug.WriteLine(exception.Message);
                 _logger?.LogException(exception);
                 return Result.Fail<bool>(exception);
+            }
+        }
+
+        public async Task<IResult<TwoFactorRegenBackupCodesResponse>> RegenerateTwoFactorBackupCodes()
+        {
+            try
+            {
+                var instaUri = new Uri(InstaApiConstants.BASE_INSTAGRAM_API_URL + $"accounts/regen_backup_codes/");
+                Debug.WriteLine(instaUri.ToString());
+                var data = new JObject
+                {
+                    {"_uuid", _deviceInfo.DeviceGuid.ToString()},
+                    {"_uid", _user.LoggedInUser.Pk.ToString()},
+                    { "_csrftoken", _user.CsrfToken}
+                };
+
+                var request = HttpHelper.GetSignedRequest(HttpMethod.Post, instaUri, _deviceInfo, data);
+                request.Headers.Add("Host", "i.instagram.com");
+                var response = await _httpRequestProcessor.SendAsync(request);
+                var json = await response.Content.ReadAsStringAsync();
+
+                if (response.StatusCode != HttpStatusCode.OK)
+                    return Result.Fail<TwoFactorRegenBackupCodesResponse>("Status code: " + response.StatusCode);
+                Debug.WriteLine(json);
+                //{"status": "ok"}
+                var obj = JsonConvert.DeserializeObject<TwoFactorRegenBackupCodesResponse>(json);
+                if (obj.Status.ToLower() == "ok")
+                    return Result.Success("No errors detected.", obj);
+                else
+                    return Result.Fail("", obj);
+            }
+            catch (Exception exception)
+            {
+                Debug.WriteLine(exception.Message);
+                _logger?.LogException(exception);
+                return Result.Fail<TwoFactorRegenBackupCodesResponse>(exception);
             }
         }
 
@@ -262,7 +299,7 @@ namespace InstaSharper.API.Processors
                 //{"changed_profile": true, "id": 7560977630, "has_profile_pic": true, "profile_pic_url": "https://scontent-frt3-2.cdninstagram.com/vp/83d757e2e68302b73cb8683eb53e1491/5B99150F/t51.2885-19/s150x150/31439599_310472246152089_1272586375874478080_n.jpg", "profile_pic_url_hd": "https://scontent-frt3-2.cdninstagram.com/vp/b2eba51b76de5704338b542777ce67bf/5B962DFF/t51.2885-19/s320x320/31439599_310472246152089_1272586375874478080_n.jpg", "status": "ok"}
 
                 var obj = JsonConvert.DeserializeObject<AccountUserResponse>(json);
-       
+
                 return Result.Success(obj);
             }
             catch (Exception exception)
@@ -433,7 +470,7 @@ namespace InstaSharper.API.Processors
                 Debug.WriteLine(json);
                 var obj = JsonConvert.DeserializeObject<AccountArchiveStoryResponse>(json);
                 //{ "reel_auto_archive": "off", "message_prefs": null, "status": "ok"}
-                if(obj.ReelAutoArchive.ToLower() == "off")
+                if (obj.ReelAutoArchive.ToLower() == "off")
                     return Result.Success(true);
                 else
                     return Result.Success(false);
@@ -482,7 +519,7 @@ namespace InstaSharper.API.Processors
                 return Result.Fail<bool>(exception);
             }
         }
-        
+
         public async Task<IResult<bool>> AllowStoryMessageRepliesAsync(MessageRepliesType repliesType)
         {
             try
@@ -730,7 +767,7 @@ namespace InstaSharper.API.Processors
                 };
                 var request = HttpHelper.GetSignedRequest(HttpMethod.Post, instaUri, _deviceInfo, data);
                 var response = await _httpRequestProcessor.SendAsync(request);
-  
+
                 var json = await response.Content.ReadAsStringAsync();
                 if (response.StatusCode != HttpStatusCode.OK)
                     return Result.Fail("Status code: " + response.StatusCode, (AccountConfirmEmailResponse)null);
@@ -896,7 +933,7 @@ namespace InstaSharper.API.Processors
                 var instaUri = new Uri(InstaApiConstants.BASE_INSTAGRAM_API_URL + $"accounts/get_comment_filter/");
                 Debug.WriteLine(instaUri.ToString());
 
-             
+
                 var request = HttpHelper.GetDefaultRequest(HttpMethod.Post, instaUri, _deviceInfo);
                 var response = await _httpRequestProcessor.SendAsync(request);
 
